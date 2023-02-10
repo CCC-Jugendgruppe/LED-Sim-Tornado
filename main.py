@@ -2,7 +2,7 @@ from simulator import Simulator
 
 def main():
     app = Simulator()
-    app.mainloop()
+    app.run()
 
 if __name__ == "__main__":
     main()

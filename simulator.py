@@ -1,5 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
+from ledstrip import LEDStrip
+from led import LED
+
 class Simulator(tk.Tk):
     def __init__(self):
         super().__init__()
@@ -13,3 +16,11 @@ class Simulator(tk.Tk):
 
         self.button = ttk.Button(self.frame, text="Click Me")
         self.button.pack()
+
+        self.led_strip = LEDStrip(self.frame, 21)
+
+
+    def run(self):
+        for i in range(self.led_strip.leds):
+            self.led_strip.leds[i].config(bg="red")
+        self.mainloop()
