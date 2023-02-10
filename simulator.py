@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
-from ledstrip import LEDStrip
 from led import LED
+from ledstrip import LEDStrip
 
 class Simulator(tk.Tk):
     def __init__(self):
@@ -21,6 +21,6 @@ class Simulator(tk.Tk):
 
 
     def run(self):
-        for i in range(self.led_strip.leds):
+        for i in range(len(self.led_strip.leds)):
             self.led_strip.leds[i].config(bg="red")
         self.mainloop()

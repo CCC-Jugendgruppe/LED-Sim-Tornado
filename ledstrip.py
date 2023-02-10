@@ -1,3 +1,5 @@
+from led import LED
+
 class LEDStrip():
     def __init__(self, frame, num_leds):
         self.frame = frame
