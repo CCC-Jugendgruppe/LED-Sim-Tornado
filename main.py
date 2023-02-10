@@ -1,9 +1,8 @@
+"""
+Der LED-Simulator ist ein Simulator um die Effekte für den Tornado zu testen.
+"""
 from simulator import Simulator
 
-def main():
+if __name__ == "__main__":
     app = Simulator()
     app.run()
-
-if __name__ == "__main__":
-    main()
-

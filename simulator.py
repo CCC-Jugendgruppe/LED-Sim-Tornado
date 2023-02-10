@@ -1,9 +1,14 @@
+"""
+Simulator-Fenster für den LED-Strip
+"""
 import tkinter as tk
 from tkinter import ttk
-from led import LED
 from ledstrip import LEDStrip
 
 class Simulator(tk.Tk):
+    """
+    Simulator-Fenster für den LED-Strip und der Funktionalität
+    """
     def __init__(self):
         super().__init__()
         ttk.Style().theme_use("clam")
@@ -21,6 +26,8 @@ class Simulator(tk.Tk):
 
 
     def run(self):
-        for i in range(len(self.led_strip.leds)):
-            self.led_strip.leds[i].config(bg="red")
+        """
+        Startet den Simulator
+        """
+        self.led_stip.update_all("red")
         self.mainloop()
