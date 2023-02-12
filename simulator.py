@@ -18,7 +18,7 @@ class Simulator(tk.Tk):
 
         self.frame = tk.Frame(self)
 
-        self.button = ttk.Button(self.frame, text="Click Me")
+        self.button = ttk.Button(self.frame, text="change color", command=lambda: self.led_strip.update_all("green"))
         self.button.pack()
 
         self.led_strip = LEDStrip(self.frame, 21)
