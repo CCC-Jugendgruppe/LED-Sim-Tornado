@@ -17,12 +17,12 @@ class Simulator(tk.Tk):
         self.resizable(False, False)
 
         self.frame = tk.Frame(self)
-        self.frame.pack(fill=tk.BOTH, expand=True)
 
         self.button = ttk.Button(self.frame, text="Click Me")
         self.button.pack()
 
         self.led_strip = LEDStrip(self.frame, 21)
+        self.frame.pack(fill=tk.BOTH, expand=True)
 
 
     def run(self):

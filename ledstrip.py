@@ -7,7 +7,7 @@ class LEDStrip():
     """
     LED Strip Klasse, um die LEDs zu verwalten
     """
-    def __init__(self, frame, num_leds):
+    def __init__(self, frame, num_leds: int = 0, from_array: list = []):
         self.frame = frame
         self.num_leds = num_leds
         self.leds = []
