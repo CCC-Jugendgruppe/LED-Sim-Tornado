@@ -29,5 +29,5 @@ class Simulator(tk.Tk):
         """
         Startet den Simulator
         """
-        self.led_stip.update_all("red")
+        self.led_strip.update_all("red")
         self.mainloop()
