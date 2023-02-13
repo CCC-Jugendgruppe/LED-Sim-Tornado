@@ -22,6 +22,7 @@ class Simulator(tk.Tk):
         self.button.pack()
 
         self.led_strip = LEDStrip(self.frame, 21)
+
         self.frame.pack(fill=tk.BOTH, expand=True)
 
 

@@ -2,8 +2,9 @@
 enthält LED Strip Klasse
 """
 from led import LED
+import tkinter as tk
 
-class LEDStrip():
+class LEDStrip(tk.Frame):
     """
     LED Strip Klasse, um die LEDs zu verwalten
     """
