@@ -3,7 +3,7 @@ Simulator-Fenster für den LED-Strip
 """
 import tkinter as tk
 from tkinter import ttk
-from ledstrip import LEDStrip
+from ledstripwrapper import LEDStripWrapper
 
 class Simulator(tk.Tk):
     """
@@ -18,10 +18,10 @@ class Simulator(tk.Tk):
 
         self.frame = tk.Frame(self)
 
-        self.button = ttk.Button(self.frame, text="change color", command=lambda: self.led_strip.update_all("green"))
+        self.button = ttk.Button(self.frame, text="change color")#, command=lambda: self.led_strip.update_all("green"))
         self.button.pack()
 
-        self.led_strip = LEDStrip(self.frame, 21)
+        self.led_strip = LEDStripWrapper(self.frame, 21)
 
         self.frame.pack(fill=tk.BOTH, expand=True)
 
@@ -30,5 +30,5 @@ class Simulator(tk.Tk):
         """
         Startet den Simulator
         """
-        self.led_strip.update_all("red")
+        # self.led_strip.update_all("red")
         self.mainloop()
