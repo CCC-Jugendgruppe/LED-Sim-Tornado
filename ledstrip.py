@@ -8,7 +8,8 @@ class LEDStrip(tk.Frame):
     """
     LED Strip Klasse, um die LEDs zu verwalten
     """
-    def __init__(self, frame, num_leds: int = 0, from_array: list = []):
+    def __init__(self, frame, num_leds: int = 0, from_array: list = [], *args, **kwargs):
+        super().__init__(frame, *args, **kwargs)
         self.frame = frame
         self.num_leds = num_leds
         self.leds = []
