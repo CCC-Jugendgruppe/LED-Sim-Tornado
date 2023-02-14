@@ -46,6 +46,9 @@ class LEDStrip(tk.Frame):
 
 
 class LEDStripWrapper(tk.Frame):
+    """
+    LED Strip Wrapper Klasse, um mehrere LED Strips zu verwalten
+    """
     def __init__(self, master, column_count: int, leds_per_column: int, *args, **kwargs):
         super().__init__(master, *args, **kwargs)
         self.column_num = column_count
@@ -53,12 +56,14 @@ class LEDStripWrapper(tk.Frame):
         self.led_strips = []
         # creates array of LED strips
         for _ in range(column_count):
-            for i in range(leds_per_column):
+            for _ in range(leds_per_column):
                 led_strip = LEDStrip(self, leds_per_column)
                 self.led_strips.append(led_strip)
 
     def pack(self, *args, **kwargs):
-        # packs the LED strips
+        """
+        packs the LED strips
+        """
         for strip in self.led_strips:
             strip.pack()
 
@@ -66,5 +71,8 @@ class LEDStripWrapper(tk.Frame):
         super().pack(*args, **kwargs)
 
     def update_all(self, color):
+        """
+        updates all leds in contained led strips
+        """
         for strip in self.led_strips:
             strip.update_all(color)
