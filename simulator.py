@@ -1,37 +1,57 @@
-"""
-Simulator-Fenster für den LED-Strip
-"""
 import tkinter as tk
 from tkinter import ttk
-from leds import LEDStripWrapper
 
 class Simulator(tk.Tk):
-    """
-    Simulator-Fenster für den LED-Strip und der Funktionalität
-    """
-    def __init__(self):
+    def __init__(self, amount_columns: int, leds_per_column: int):
         super().__init__()
-        ttk.Style().theme_use("clam")
-        self.title("Simulator")
-        self.geometry("800x600")
+        self.title("My App")
+        self.geometry("500x500")
         self.resizable(False, False)
+        # Create a frame
+        self.frame = ttk.Frame(self)
+        # split the frame into three parts next to each other
+        self.frame.pack(side="top", fill="both", expand=True)
 
-        self.frame = tk.Frame(self)
-
-        self.led_strip = LEDStripWrapper(self.frame, leds_per_column=7, column_count=3)
-
-        self.button = ttk.Button(self.frame,
-                                 text="change color",
-                                 command=lambda: self.led_strip.update_all("green"))
-        self.button.pack()
-
-
-        self.frame.pack(fill=tk.BOTH, expand=True)
-
+        LEDStripsManager(self.frame, amount_columns=amount_columns, leds_per_column=leds_per_column)
 
     def run(self):
-        """
-        Startet den Simulator
-        """
-        self.led_strip.pack(fill=tk.BOTH, expand=True)
         self.mainloop()
+
+
+class LED(tk.Canvas):
+    def __init__(self, master, color="red", **kwargs):
+        super().__init__(master, height=20, width=20, **kwargs, bg=color)
+
+    def set_color(self, color):
+        self.config(bg=color)
+
+
+class LEDStrip(ttk.Frame):
+    def __init__(self, master, amount_leds=10, *args, **kwargs):
+        super().__init__(master, *args, **kwargs)
+        self.leds = []
+        for i in range(amount_leds):
+            led = LED(self)
+            led.grid(row=i, column=0)
+            self.leds.append(led)
+
+    def set_all_color(self, color):
+        for led in self.leds:
+            led.set_color(color)
+
+    def set_color(self, index, color):
+        self.leds[index].set_color(color)
+
+
+class LEDStripsManager(ttk.Frame):
+    def __init__(self, master, amount_columns, leds_per_column):
+        for i in range(amount_columns):
+            master.columnconfigure(i, weight=1)
+        master.rowconfigure(0, weight=1)
+
+        self.strips = []
+
+        for i in range(amount_columns):
+            strip = LEDStrip(master, amount_leds=leds_per_column)
+            strip.grid(row=0, column=i)
+            self.strips.append(strip)
