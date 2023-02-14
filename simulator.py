@@ -3,6 +3,9 @@ from led import LEDStripsManager
 from tkinter import ttk
 
 class Simulator(tk.Tk):
+    """
+    LED-Strip Simulator fenster
+    """
     def __init__(self, amount_columns: int, leds_per_column: int):
         super().__init__()
         self.title("My App")
@@ -14,6 +17,3 @@ class Simulator(tk.Tk):
         self.frame.pack(side="top", fill="both", expand=True)
 
         self.mgr = LEDStripsManager(self.frame, amount_columns=amount_columns, leds_per_column=leds_per_column)
-
-    def run(self):
-        self.mainloop()
