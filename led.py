@@ -56,3 +56,7 @@ class LEDStripsManager(ttk.Frame):
             strip = LEDStrip(master, amount_leds=leds_per_column)
             strip.grid(row=0, column=i)
             self.strips.append(strip)
+
+    def set_all(self, color):
+        for strip in self.strips:
+            strip.set_all_color(color)
