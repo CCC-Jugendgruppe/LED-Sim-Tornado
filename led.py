@@ -1,8 +1,9 @@
 """
 LED Logik
-    """
+"""
 import tkinter as tk
 from tkinter import ttk
+from util import rgbval
 
 class LED(tk.Canvas):
     """ 
@@ -30,7 +31,7 @@ class LEDStrip(ttk.Frame):
             led.grid(row=i, column=0)
             self.leds.append(led)
 
-    def set_all_color(self, color):
+    def set_all(self, color):
         """
         Setzt alle LEDs auf die gleiche Farbe
         """
@@ -46,6 +47,8 @@ class LEDStrip(ttk.Frame):
 
 class LEDStripsManager(ttk.Frame):
     def __init__(self, master, amount_columns, leds_per_column):
+        self.amount_columns = amount_columns
+        self.leds_per_column = leds_per_column
         for i in range(amount_columns):
             master.columnconfigure(i, weight=1)
         master.rowconfigure(0, weight=1)
@@ -60,3 +63,13 @@ class LEDStripsManager(ttk.Frame):
     def set_all(self, color):
         for strip in self.strips:
             strip.set_all_color(color)
+
+    def run_effect(self, effect: str):
+        # run effect by name
+        match effect:
+            case "rainbow":
+                self.strips[0].set_all(rgbval(255, 0, 0))
+                self.strips[1].set_all(rgbval(0, 255, 0))
+                self.strips[2].set_all(rgbval(0, 0, 255))
+            case _:
+                pass

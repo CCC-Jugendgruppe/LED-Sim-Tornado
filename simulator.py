@@ -18,5 +18,5 @@ class Simulator(tk.Tk):
         self.frame.pack(side="top", fill="both", expand=True)
 
         self.mgr = LEDStripsManager(self.frame, amount_columns=amount_columns, leds_per_column=leds_per_column)
-        btn = ttk.Button(self, text="farbe setzen", command=lambda: self.mgr.set_all("green"))
+        btn = ttk.Button(self, text="effekt ausführen", command=lambda: self.mgr.run_effect("rainbow"))
         btn.pack(side="top")
