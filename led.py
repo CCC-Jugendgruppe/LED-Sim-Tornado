@@ -1,15 +1,27 @@
+"""
+LED Logik
+    """
 import tkinter as tk
 from tkinter import ttk
 
 class LED(tk.Canvas):
+    """ 
+    Repräsentiert eine LED
+    """
     def __init__(self, master, color="red", **kwargs):
         super().__init__(master, height=20, width=20, **kwargs, bg=color)
 
     def set_color(self, color):
+        """
+        Setzt die Farbe der LED
+        """
         self.config(bg=color)
 
 
 class LEDStrip(ttk.Frame):
+    """
+    Repräsentiert eine LED-Streifen
+    """
     def __init__(self, master, amount_leds=10, *args, **kwargs):
         super().__init__(master, *args, **kwargs)
         self.leds = []
@@ -19,10 +31,16 @@ class LEDStrip(ttk.Frame):
             self.leds.append(led)
 
     def set_all_color(self, color):
+        """
+        Setzt alle LEDs auf die gleiche Farbe
+        """
         for led in self.leds:
             led.set_color(color)
 
     def set_color(self, index, color):
+        """
+        Setzt die Farbe einer bestimmten LED
+        """
         self.leds[index].set_color(color)
 
 

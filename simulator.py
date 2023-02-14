@@ -13,7 +13,7 @@ class Simulator(tk.Tk):
         # split the frame into three parts next to each other
         self.frame.pack(side="top", fill="both", expand=True)
 
-        LEDStripsManager(self.frame, amount_columns=amount_columns, leds_per_column=leds_per_column)
+        self.mgr = LEDStripsManager(self.frame, amount_columns=amount_columns, leds_per_column=leds_per_column)
 
     def run(self):
         self.mainloop()
