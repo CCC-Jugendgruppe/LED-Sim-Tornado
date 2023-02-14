@@ -38,7 +38,7 @@ class LEDStrip(tk.Frame):
         for i in range(self.num_leds):
             self.leds[i].config(bg=color)
 
-    def update(self, index, color):
+    def update_leds(self, index, color):
         """
         Setzt bestimmte LED auf eine Farbe
         """
