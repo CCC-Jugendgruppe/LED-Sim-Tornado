@@ -49,6 +49,7 @@ class LEDStripsManager(ttk.Frame):
     def __init__(self, master, amount_columns, leds_per_column):
         self.amount_columns = amount_columns
         self.leds_per_column = leds_per_column
+        self.master = master
         for i in range(amount_columns):
             master.columnconfigure(i, weight=1)
         master.rowconfigure(0, weight=1)
@@ -62,14 +63,14 @@ class LEDStripsManager(ttk.Frame):
 
     def set_all(self, color):
         for strip in self.strips:
-            strip.set_all_color(color)
+            strip.set_all(color)
 
     def run_effect(self, effect: str):
         # run effect by name
         match effect:
             case "rainbow":
-                self.strips[0].set_all(rgbval(255, 0, 0))
-                self.strips[1].set_all(rgbval(0, 255, 0))
-                self.strips[2].set_all(rgbval(0, 0, 255))
+                for i in range(255):
+                    self.set_all(rgbval(i, 255, 255))
+                    self.master.update()
             case _:
                 pass
