@@ -3,10 +3,10 @@ LED Logik
 """
 import tkinter as tk
 from tkinter import ttk
-from util import rgbval
+from util import rgb_perc
 
 class LED(tk.Canvas):
-    """ 
+    """
     Repräsentiert eine LED
     """
     def __init__(self, master, color="red", **kwargs):
@@ -46,7 +46,11 @@ class LEDStrip(ttk.Frame):
 
 
 class LEDStripsManager(ttk.Frame):
+    """
+    Manager für mehrere LED-Streifen
+    """
     def __init__(self, master, amount_columns, leds_per_column):
+        super().__init__(master)
         self.amount_columns = amount_columns
         self.leds_per_column = leds_per_column
         self.master = master
@@ -61,16 +65,22 @@ class LEDStripsManager(ttk.Frame):
             strip.grid(row=0, column=i)
             self.strips.append(strip)
 
+
     def set_all(self, color):
+        """
+        Setzt alle LEDs auf die gleiche Farbe
+        """
         for strip in self.strips:
             strip.set_all(color)
 
     def run_effect(self, effect: str):
-        # run effect by name
+        """
+        Führt einen Effekt aus
+        """
         match effect:
             case "rainbow":
-                for i in range(255):
-                    self.set_all(rgbval(i, 255, 255))
-                    self.master.update()
+                for i in range(self.amount_columns):
+                    for j in range(self.leds_per_column):
+                        self.strips[i].set_color(j, rgb_perc(10, 40, 50)) # perc / 100 * 255
             case _:
                 pass
