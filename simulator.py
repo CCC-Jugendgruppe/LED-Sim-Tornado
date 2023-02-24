@@ -25,5 +25,5 @@ class Simulator(tk.Tk):
                                     leds_per_column=leds_per_column)
         btn = ttk.Button(self,
                          text="effekt ausführen",
-                         command=lambda: self.mgr.run_effect("rainbow"))
+                         command=lambda: self.mgr.run_effect("testing"))
         btn.pack(side="top")
